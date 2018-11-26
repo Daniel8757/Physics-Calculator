@@ -1,0 +1,64 @@
+import math
+
+#With angle, distance, and height
+
+#Note the velocity must be above 0.001 for this piece of code to work
+#It also calculates down to 0.001 precision
+
+height = float(input("Input the height"))
+distance = float(input("Input the distance"))
+
+while True:
+    angle = float(input("Input the angle above the horizone, up to 90 degrees"))
+    if(angle>= 0 and angle<= 90):
+        break
+    else:
+        print("Not valid!")
+
+ask = int(input("1 for time, 2 for velocity"))
+
+velocity = 0.001
+distanc = -height
+
+while True:
+    #We can technically combine all of this into one line but it would be too tedious
+    velocityY = math.sin(math.radians(angle))*velocity
+    time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+    velocityX = math.cos(math.radians(angle))*velocity
+    distanceTry = velocityX*time
+    if distanceTry<distance:
+        velocity = velocity*2
+    elif distanceTry>distance:
+        break
+
+
+change = velocity/2
+foward = False
+
+while True:
+    if foward == True:
+        velocity += change
+    else:
+        velocity -= change
+        
+    velocityY = math.sin(math.radians(angle))*velocity
+    time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+    velocityX = math.cos(math.radians(angle))*velocity
+    distanceTry = velocityX*time
+    if distanceTry>distance:
+        foward = False
+    elif distanceTry<distance:
+        foward = True
+    else:
+        break
+
+    if change<0.001:
+        break
+    
+    change = change/2
+
+print("Unfortunately, solving this is beyond the scope of grade 11. May the gods one day bless us with further knowledge. This program guessed and checked")
+if ask == 1:
+    print("The time is", time)
+else:
+    print("The velocity is", time)
