@@ -1,0 +1,305 @@
+#Kinematic equation that does not use the final velocity variable
+def equation1(d, v1, a, t):
+    t1 = 0
+    t2 = 0   
+    if solving == "d":
+        return (v1 * t) + (1/2 * a * t ** 2)
+        
+    elif solving == "v1":
+        return (d - (0.5 * a * t**2)) / t
+      
+    elif solving == "a":
+        return (2*(d - (v1 * t))) / t ** 2
+     
+    elif solving == "t":
+        try:
+            t1 = (-v1 + math.sqrt(v1**2 - (2*a*d))) / a
+        except (ValueError):
+            t1 = -99.224
+        try:
+            t2 = (-v1 - math.sqrt(v1**2 - (2*a*d))) / a
+        except (ValueError):
+            t2 = -99.224
+            
+        if t1 == -99.224 and t2 == -99.224:
+            print()
+            print("This calculation is impossible. Please check that all values are entered correctly")
+            #make them go to a fresh big 5 equation page please
+            return 0
+        elif t1 == -99.224:
+            return t2
+        elif t2 == -99.224:
+            return t1
+        elif t1 > t2:
+            return t1
+        elif t2 > t1:
+            return t2
+
+#KInematic equation that does not use the initial velocity variable
+def equation2 (d, v2, a, t):
+    t1 = 0
+    t2 = 0
+    if solving == "d":
+        return (v2 * t) + (0.5 * a * t ** 2)
+       
+    elif solving == "v2":
+        return (d - (0.5 * a * t**2)) / t
+        
+    elif solving == "a":
+        return (2*(d - (v2 * t))) / t ** 2
+    
+    elif solving == "t":
+        try:
+            t1 = (-v2 + math.sqrt(v2**2 - (2*a*d))) / a
+        except (ValueError):
+            t1 = -99.224
+        try:
+            t2 = (-v2 - math.sqrt(v2**2 - (2*a*d))) / a
+        except (ValueError):
+            t2 = -99.224
+
+        if t1 == -99.224 and t2 == -99.224:
+            print()
+            print("This calculation is impossible. Please check that all values are entered correctly")
+            #make them go to a fresh big 5 equation page please
+        elif t1 == -99.224:
+            return t2
+        elif t2 == -99.224:
+            return t1
+        elif t1 > t2:
+            return t1
+        elif t2 > t1:
+            return t2
+
+#Kinematic equation that does not use the displacement variable
+def equation3(v1, v2, a, t):
+    if solving == "v1":
+        return v2 - a * t
+        
+    elif solving == "v2":
+        return  v1 + a * t
+        
+    elif solving == "a":
+        return (v2 - v1) / t
+        
+    elif solving == "t":
+        return (v2 - v1) / a
+        
+
+#Kinematic equation that does not use the acceleration variable
+def equation4(d, v1, v2, t):
+    if solving == "d":
+        return 0.5 * (v1 + v2) * t
+        
+    elif solving == "v1":
+        return (2*d - (v2 * t)) / t
+
+    elif solving == "v2":
+        return (2*d - (v1 * t)) / t
+        
+    elif solving == "t":
+        return (2 * d) / (v1 + v2)
+        
+
+#Kinematic equation that does not use the time variable 
+def equation5 (d, v1, v2, a):    
+    if solving == "d":
+        return ((v2 ** 2) - (v1 ** 2)) / (2 * a)
+
+    elif solving == "v1":
+        return math.sqrt((-v2**2) + (2 * a / d))
+        
+    elif solving == "v2":
+        return math.sqrt((v1**2) + (2 * a / d))
+        
+    elif solving == "a":
+        return ((v2**2) - (v1**2))/ (2*d)
+        
+
+def vectorDirection(direction):
+    if directionPositive == "forward" and direction > 0 or directionPositive == "fwd" and direction > 0:
+        return "[FWD]"
+    elif directionPositive == "forward" and direction < 0 or directionPositive == "fwd" and direction < 0:
+        return "[BKWD]"
+    elif directionPositive == "backward" and direction > 0 or directionPositive == "bkwd" and direction > 0:
+        return "[BKWD]"
+    elif directionPositive == "backward" and direction < 0 or directionPositive == "bkwd" and direction < 0:
+        return "[FWD]"
+    elif directionPositive == "up" and direction > 0:
+        return "[UP]"
+    elif directionPositive == "up" and direction < 0:
+        return "[DOWN]"
+    elif directionPositive == "down" and direction > 0:
+        return "[DOWN]"
+    elif directionPositive == "down" and direction < 0:
+        return "[UP]"
+    elif directionPositive == "north" and direction > 0:
+        return "[NORTH]"
+    elif directionPositive == "north" and direction < 0:
+        return "[SOUTH]"
+    elif directionPositive == "south" and direction > 0:
+        return "[SOUTH]"
+    elif directionPositive == "south" and direction < 0:
+        return "[NORTH]"
+    elif directionPositive == "east" and direction > 0:
+        return "[EAST]"
+    elif directionPositive == "east" and direction < 0:
+        return "[WEST]"
+    elif directionPositive == "west" and direction > 0:
+        return "[WEST]"
+    elif directionPositive == "west" and direction < 0:
+        return "[EAST]"
+    else:
+        return ""
+
+#Start of the program
+    #Declaring variables that will be defined by the user
+solving = str("answer")
+d = 0
+v1 = 0
+v2 = 0
+a = 0
+t = 0
+answer = 0
+
+#insruction for the user as to how they should input their variables
+print("Type 'solve' for the variable you want to solve for")
+print("Leave the unused variable blank")
+print("Fill all other variables with the SI version of the values in the question")
+print("Possible direction are: forward, fwd, backward, bkwd, north, east, south, west, up, down")
+
+#All the variable inputs that the user needs to make for the program to run
+    #Input from the user to determine the vector component of the answer
+directionPositive = str(input("Which direction is positive? "))
+
+    #The five possible variables that are used in the "Big 5" kinematic equations. One of the five needs to
+    #be left blank because only four are used in any given equation and one needs the key word solve for the
+    #program to know which variable it is solving for
+displacement = input("What is the displacement: ")
+velocityInitial = input("What is the initial velocity: ")
+velocityFinal = input("What is the final velocity: ")
+acceleration = input("What is the acceleration: ")
+time = input("What is the time: ")
+print()
+#Uses the solve string to find which of the potential variables is being solved for. Another variable is set
+#to keep the variable that needs to be solved stored and sets the original variable back to a number so that
+#a float can be take from that variable for calculation
+if displacement == "solve":
+    displacement = 0
+    solving = "d"    
+elif velocityInitial == "solve":
+    velocityInitial = 0
+    solving = "v1"    
+elif velocityFinal == "solve":
+    velocityFinal = 0
+    solving = "v2"    
+elif acceleration == "solve":
+    acceleration = 0
+    solving = "a"
+elif time == "solve":
+    time = 0
+    solving = "t"
+
+##print("The displacement is:", displacement)
+##print("The velocityInitial is:", velocityInitial)
+##print("The velocityFinal is:", velocityFinal)
+##print("The acceleration is:", acceleration)
+##print("The time is:", time)
+
+#Determines which equation to use based on the the variable that is not assigned a value when all variables are declared
+#the actual answer is then calculated and the appropriate vector is then assigned based on is the answer is positive or
+#negative. If the answer is negative it is then changed to positive because vectored number should be expressed as postiive
+#numbers only. Since time is not a vector it does not get a vector sign but time cannot be negative so it is also set to be positive.
+    
+    #Solving without the final velocity varaible
+if velocityFinal == "":
+    answer = equation1(float(displacement), float(velocityInitial), float(acceleration), float(time))
+    
+    try:
+        vector = vectorDirection(answer)
+    except (TypeError):
+        pass
+
+    if answer < 0:
+        answer *= -1
+
+    if solving == "d":
+        print("The displacement is %0.2f" %(answer), "m", vector)
+    elif solving == "v1":
+        print("The initial velocity is %0.2f" %(answer), "m/s", vector)
+    elif solving == "a":
+        print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+    elif solving == "t" and answer != 0:
+        print("The time taken is %0.2f" %(answer), "s")
+
+    #Solving without the initial velocity variable        
+elif velocityInitial == "":
+    answer = equation2(float(displacement), float(velocityFinal), float(acceleration), float(time))
+    vector = vectorDirection(answer)
+
+    if answer < 0:
+        answer *= -1
+        
+    if solving == "d":
+        print("The dispalcement is %0.2f" %(answer), "m", vector)
+    elif solving == "v2":
+        print("The final velocity is %0.2f" %(answer),"m/s", vector)
+        print(v2)
+    elif solving == "a":
+        print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+    elif solving == "t":
+        print("The time taken is %0.2f" %(answer), "s")
+
+    #Solving without the displacement variable
+elif displacement == "":
+    answer = equation3(float(velocityInitial), float(velocityFinal), float(acceleration), float(time))
+    vector = vectorDirection(answer)
+    
+    if answer < 0:
+        answer *= -1
+        
+    if solving == "v1":
+        print("The initial velocity is %0.2f" %(answer), "m/s", vector)
+
+    elif solving == "v2":
+        print("The final velocity is %0.2f" %(answer), "m/s", vector)
+    elif solving == "a":
+        print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+    elif solving == "t":
+        print("The time taken is %0.2f" %(answer), "s")
+
+    #Solving without the acceleration variable
+elif acceleration == "":
+    answer = equation4(float(displacement), float(velocityInitial), float(velocityFinal), float(time))
+    vector = vectorDirection(answer)
+
+    if answer < 0:
+        answer *= -1
+        
+    if solving == "d":
+        print("The displacement is %0.2f" %(answer), "m", vector)
+    elif solving == "v1":
+        print("The initial velocity is %0.2f" %(answer),"m/s", vector)
+    elif solving == "v2":
+        print("The final velocity %0.2f" %(answer), "m/s", vector)
+    elif solving == "t":
+        print("The time taken is %0.2f" %(answer), "s")
+
+    #Solving wihtout the time variable
+elif time == "":
+    answer = equation5(float(displacement), float(velocityInitial), float(velocityFinal), float(acceleration))
+    vector = vectorDirection(answer)
+
+    if answer < 0:
+        answer *= -1
+        
+    if solving == "d":
+        print("The displacement is %0.2f" %(answer), "m", vector)
+    elif solving == "v1":
+        print("The initial velocity is %0.2f" %(answer), "m/s", vector)
+    elif solving == "v2":
+        print("The final velocity is %0.2f" %(answer), "m/s", vector)
+    elif solving == "a":
+        print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+
+print()
