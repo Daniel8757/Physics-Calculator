@@ -1,0 +1,37 @@
+import math
+
+#With velocity, angle, and distance
+
+velocity = float(input("Input the velocity"))
+distance = float(input("Input the distance"))
+
+while True:
+    angle = float(input("Input the angle above the horizone, up to 90 degrees"))
+    if(angle>= 0 and angle<= 90):
+        break
+    else:
+        print("Not valid!")
+
+ask = int(input("1 for time, 2 for height"))
+
+if ask == 1:
+    print("We first find the velocity of the x component")
+    velocityX = math.cos(math.radians(angle))*velocity
+    print("cosine velocity to get", velocityX)
+    print("Now we divide distance by velocity on the X axis to get time")
+    time = velocity/velocityX
+    print(velocity, "divided by", velocityX, "is", time)
+    print("The time is", time)
+if ask == 2:
+    print("We first find the velocity of the x component")
+    velocityX = math.cos(math.radians(angle))*velocity
+    print("cosine velocity to get", velocityX)
+    print("Now we divide distance by velocity on the X axis to get time")
+    time = velocity/velocityX
+    print(velocity, "divided by", velocityX, "is", time)
+    print("Now we find velocity on the Y axis")
+    velocityY = math.sin(math.radians(angle))*velocity
+    print("Thankfull daddy own derived the equations, so we subtistute into a big 5")
+    print("We use v*t + 1/2a*t^2")
+    height = (velocityY*time)+((1/2)*(-9.8)*(time**2))
+    print("The displacement is", height, "but since it is negative the height is", -height)
