@@ -1,0 +1,34 @@
+import math
+
+#With time and velocity and zee angle
+
+time = float(input("Input the time"))
+velocity = float(input("Input the velocity"))
+
+while True:
+    angle = float(input("Input the angle above the horizone, up to 90 degrees"))
+    if(angle>= 0 and angle<= 90):
+        break
+    else:
+        print("Not valid!")
+
+ask = int(input("Find distance or height? 1 for distance, 2 for height"))
+
+
+if ask == 1:
+    print("First we find the horizontal velocity!")
+    velocityX = math.cos(math.radians(angle))*velocity
+    print("Cosine", angle, "then multiply with", velocity, "to get", velocityX)
+    print("Since d = v*t, we multiply the velocity on the X axis with time to find distance")
+    distance = velocityX*time
+    print(time, "x", velocityX, "=", distance)
+    print("The distance is", distance, "!")
+elif ask == 2:
+    print("First we find vertical velocity!")
+    velocityY = math.sin(math.radians(angle))*velocity
+    print("sin", angle, "then multiply with", velocity, "to get", velocityY)
+    print("Thankfully daddy owen derived the equations for us.")
+    print("Substitute the variables into v*t + (1/2)*a*t^2")
+    height = (velocityY*time)+(-9.8)*0.5*(time**2)
+    print("The displacement is", height, "However, we are looing for height! It is the opposite")
+    print("The height is", -height)
