@@ -1,0 +1,39 @@
+import math
+
+#With time and velocity and height
+time = float(input("Enter the time"))
+velocity = float(input("input the velocity"))
+height = float(input("tell me the height"))
+
+ask = int(input("Find distance or angle? 1 for distance, 2 for angle"))
+
+if ask == 1:
+    print("We first find the velocity on vertical")
+    print("Thank daddy owen for deriving the equation for us")
+    print("We currently have *gasp* time, height, and gravity")
+    print("Remember, we must make height negative because we are finding the end displacement")
+    print("(v = d-1/2a*t^2)/t")
+    distanc = -height
+    velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+    print("Vertical velocity is", velocityY)
+    angle = math.degrees(math.asin(velocityY/velocity))
+    print("sin(verticalvelocity/velocity) gives us", angle)
+    print("To find distance, we find the vertical velocity")
+    velocityX = math.cos(math.radians(angle))*velocity
+    print("cos(angle)*velocity equals", velocityX)
+    print("velocity*time gives us distance")
+    distance = velocityX*time
+    print("The distance is", distance)
+    
+elif ask == 2:
+    print("We first find the velocity on vertical")
+    print("Thank daddy owen for deriving the equation for us")
+    print("We currently have *gasp* time, height, and gravity")
+    print("Remeber, we must make height negative because we are finding the end displacement")
+    print("(v = d-1/2a*t^2)/t")
+    distanc = -height
+    velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+    print("Vertical velocity is", velocityY)
+    angle = math.degrees(math.asin(velocityY/velocity))
+    print("sin(verticalvelocity/velocity) gives us", angle)
+    print("The angle is", angle)
