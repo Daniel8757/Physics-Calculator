@@ -1,0 +1,955 @@
+import math
+
+def bigfive():
+    #Kinematic equation that does not use the final velocity variable
+    def equation1(d, v1, a, t):
+        t1 = 0
+        t2 = 0   
+        if solving == "d":
+            print("d = v1 * t + 1/2a * t2")
+            print("d = (",v1,"*",t,") + (1/2",a,"*",t,"^2)")
+            print("d = ", v1*t, "+ (", 1/2*a, "*", t**2,")")
+            return (v1 * t) + (1/2 * a * t ** 2)
+            
+        elif solving == "v1":
+            print("v1 = (d - (0.5 * a * t**2)) / t")
+            print("v1 =(",d,"-(0.5 *",a,"*",t,"^2)) /",t,")")
+            print("v1 =", d, "- (", 0.5*a,"*", t**2, ") /",t)
+            return (d - (0.5 * a * t**2)) / t
+          
+        elif solving == "a":
+            print("a = (2*(d - (v1 * t)) / t^2")
+            print("a = (2*(",d,"-(",v1,"*",t,"))) /",t,"^2")
+            print("a = (",2,"* (",d, "-", v1 * t,")) /",t**2)
+            print("a = (",2,"* (",d - v1*t,")) /",t**2)
+            print("a = (",2 * (d - v1 *t),") /", t**2)                           
+            return 2*(d - (v1 * t)) / t ** 2
+        
+        elif solving == "t":
+            try:
+                t1 = (-v1 + math.sqrt(v1**2 - (2*a*d))) / a
+            except (ValueError):
+                t1 = -99.224
+            try:
+                t2 = (-v1 - math.sqrt(v1**2 - (2*a*d))) / a
+            except (ValueError):
+                t2 = -99.224
+                
+            if t1 == -99.224 and t2 == -99.224:
+                print()
+                print("This calculation is impossible. Please check that all values are entered correctly")
+                #make them go to a fresh big 5 equation page please
+        
+                return 0
+            elif t1 == -99.224:
+                print("t2 = (-v1 +",u"\u221a v1**2 - (2*a*d)) / a")
+                print("t2 = (",-v1,"+", u"\u221a",v1,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t2 = (",-v1,"+",u"\u221a",v1 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t2 = (",-v1,"+",u"\u221a",round(v1 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v1 + math.sqrt(v1 ** 2 - 2 * a * d),3),"/",a)
+                return t2
+            elif t2 == -99.224:
+                print("t1 = (-v1 +",u"\u221a v1**2 - (2*a*d)) / a")
+                print("t1 = (",-v1,"+", u"\u221a",v1,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t1 = (",-v1,"+",u"\u221a",v1 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t1 = (",-v1,"+",u"\u221a",round(v1 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v1 + math.sqrt(v1 ** 2 - 2 * a * d),3),"/",a)
+                return t1
+            elif t1 > t2:
+                print("t1 = (-v1 +",u"\u221a v1**2 - (2*a*d)) / a")
+                print("t1 = (",-v1,"+", u"\u221a",v1,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t1 = (",-v1,"+",u"\u221a",v1 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t1 = (",-v1,"+",u"\u221a",round(v1 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v1 + math.sqrt(v1 ** 2 - 2 * a * d),3),"/",a)
+                return t1
+            elif t2 > t1:
+                print("t2 = (-v1 +",u"\u221a v1**2 - (2*a*d)) / a")
+                print("t2 = (",-v1,"+", u"\u221a",v1,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t2 = (",-v1,"+",u"\u221a",v1 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t2 = (",-v1,"+",u"\u221a",round(v1 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v1 + math.sqrt(v1 ** 2 - 2 * a * d),3),"/",a)
+                return t2
+
+    #Kinematic equation that does not use the initial velocity variable
+    def equation2 (d, v2, a, t):
+        t1 = 0
+        t2 = 0
+        if solving == "d":
+            print("d = v2 * t + 1/2a * t2")
+            print("d = (",v2,"*",t,") + (1/2",a,"*",t,"^2)")
+            print("d = ", v2*t, "+ (", 1/2*a, "*", t**2,")")
+            return (v2 * t) + (0.5 * a * t ** 2)
+           
+        elif solving == "v2":
+            print("v2 = (d - (0.5 * a * t**2)) / t")
+            print("v2 =(",d,"-(0.5 *",a,"*",t,"^2)) /",t,")")
+            print("v2 =", d, "- (", 0.5*a,"*", t**2, ") /",t)
+            return (d - (0.5 * a * t**2)) / t
+            
+        elif solving == "a":
+            print("a = (2*(d - (v2 * t)) / t^2")
+            print("a = (2*(",d,"-(",v2,"*",t,"))) /",t,"^2")
+            print("a = (",2,"* (",d, "-", v2 * t,")) /",t**2)
+            print("a = (",2,"* (",d - v2*t,")) /",t**2)
+            print("a = (",2 * (d - v2 *t),") /", t**2)
+            return (2*(d - (v2 * t))) / t ** 2
+        
+        elif solving == "t":
+            try:
+                t1 = (-v2 + math.sqrt(v2**2 - (2*a*d))) / a
+            except (ValueError):
+                t1 = -99.224
+            try:
+                t2 = (-v2 - math.sqrt(v2**2 - (2*a*d))) / a
+            except (ValueError):
+                t2 = -99.224
+
+            if t1 == -99.224 and t2 == -99.224:
+                print()
+                print("This calculation is impossible. Please check that all values are entered correctly")
+                #make them go to a fresh big 5 equation page please
+            elif t1 == -99.224:
+                print("t2 = (-v2 +",u"\u221a v2**2 - (2*a*d)) / a")
+                print("t2 = (",-v2,"+", u"\u221a",v2,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t2 = (",-v2,"+",u"\u221a",v2 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t2 = (",-v2,"+",u"\u221a",round(v2 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v2 + math.sqrt(v2 ** 2 - 2 * a * d),3),"/",a)
+                return t2
+            elif t2 == -99.224:
+                print("t1 = (-v2 +",u"\u221a v2**2 - (2*a*d)) / a")
+                print("t1 = (",-v2,"+", u"\u221a",v2,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t1 = (",-v2,"+",u"\u221a",v2 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t1 = (",-v2,"+",u"\u221a",round(v2 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v2 + math.sqrt(v2 ** 2 - 2 * a * d),3),"/",a)
+                return t1
+            elif t1 > t2:
+                print("t1 = (-v2 +",u"\u221a v2**2 - (2*a*d)) / a")
+                print("t1 = (",-v2,"+", u"\u221a",v2,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t1 = (",-v2,"+",u"\u221a",v2 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t1 = (",-v2,"+",u"\u221a",round(v2 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v2 + math.sqrt(v2 ** 2 - 2 * a * d),3),"/",a)
+                return t1
+            elif t2 > t1:
+                print("t2 = (-v2 +",u"\u221a v2**2 - (2*a*d)) / a")
+                print("t2 = (",-v2,"+", u"\u221a",v2,"** 2 - (2*",a,"*",d,")) /",a)
+                print("t2 = (",-v2,"+",u"\u221a",v2 ** 2,"-","(", 2 * a * d,")) /",a)
+                print("t2 = (",-v2,"+",u"\u221a",round(v2 ** 2 - 2 * a * d,3),") /",a)
+                print("t2 = ",round(-v2 + math.sqrt(v2 ** 2 - 2 * a * d),3),"/",a)
+                return t2
+
+    #Kinematic equation that does not use the displacement variable
+    def equation3(v1, v2, a, t):
+        if solving == "v1":
+            print("v1 = -v2 + a * t")
+            print("v1 =",-v2,"+",a,"*",t)
+            print("v1 =",-v2,"+",a*t)            
+            return v2 - a * t
+            
+        elif solving == "v2":
+            print("v2 = -v1 + a * t")
+            print("v2 =",-v1,"+",a,"*",t)
+            print("v2 =",-v1,"+",a*t)  
+            return  v1 + a * t
+            
+        elif solving == "a":
+            print("a = (v2 - v1) / t")
+            print("a = (",v2, "-", v1,") /", t)
+            print("a = (", v2 - v1,") /", t)
+            return (v2 - v1) / t
+            
+        elif solving == "t":
+            print("t = (v2 - v1) / a")
+            print("t = (", v2,"-",v1,") /",a)
+            print("t =(",v2-v1,") /",a)
+            return (v2 - v1) / a
+                
+
+    #Kinematic equation that does not use the acceleration variable
+    def equation4(d, v1, v2, t):
+        if solving == "d":
+            print("d = 0.5 * (v1 + v2) * t")
+            print("d = 0.5 * (", v1,"+", v2,") *",t)
+            print("d = 0.5 * (",v1 + v2,")*t")
+            return 0.5 * (v1 + v2) * t
+            
+        elif solving == "v1":
+            print("v1 = (2*d - (v2 * t)) / t")
+            print("v1 = ( 2*", d, "(",v2,"*",t,")) /", t)
+            print("v1 = (", 2*d, "- (", v2 *t,")) /", t)
+            print("v1 = ", 2*d - v2 * t ,"/", t)
+            return (2*d - (v2 * t)) / t
+
+        elif solving == "v2":
+            print("v2 = (2*d - (v1 * t)) / t")
+            print("v2 = ( 2*", d, "(",v1,"*",t,")) /", t)
+            print("v2 = (", 2*d, "- (", v1 *t,")) /", t)
+            print("v2 = ", 2*d - v1 * t ,"/", t)
+            return (2*d - (v1 * t)) / t
+            
+        elif solving == "t":
+            print("t = (2 * d) / (v1 + v2)")
+            print("t = ( 2 *", d,") / (",v1, "+", v2,")")
+            print("t = (", 2 * d,") / (" ,v1 + v2,")")
+            return (2 * d) / (v1 + v2)
+            
+
+    #Kinematic equation that does not use the time variable 
+    def equation5 (d, v1, v2, a):    
+        if solving == "d":
+            print("d = ((v2 ** 2) - (v1 ** 2)) / (2 * a)")
+            print("d = ((", v2,"** 2) - (",v1,"** 2)) / (2 *", a,")")
+            print("d = ((", v2**2,") - (", v1**2,")) / (", 2*a,")")
+            print("d = ", v2**2 - v1**2,"/ (", 2*a,")")
+            return ((v2 ** 2) - (v1 ** 2)) / (2 * a)
+
+        elif solving == "v1":
+            return math.sqrt((-v2**2) + (2 * a / d))
+            
+        elif solving == "v2":
+            return math.sqrt((v1**2) + (2 * a / d))
+            
+        elif solving == "a":
+            print("a = ((v2 ** 2) - (v1 ** 2)) / (2 * d)")
+            print("a = ((", v2,"** 2) - (",v1,"**2)) / (2 *",d,")")
+            print("a = ((", v2**2,"- (",v1**2,")) /(", 2*d,")")
+            print("a = ", v2**2 - v1**2,"/ (", 2*d,")")
+            return ((v2**2) - (v1**2)) / (2*d)
+            
+
+    def vectorDirection(direction):
+        if directionPositive == "forward" and direction > 0 or directionPositive == "fwd" and direction > 0:
+            return "[FWD]"
+        elif directionPositive == "forward" and direction < 0 or directionPositive == "fwd" and direction < 0:
+            return "[BKWD]"
+        elif directionPositive == "backward" and direction > 0 or directionPositive == "bkwd" and direction > 0:
+            return "[BKWD]"
+        elif directionPositive == "backward" and direction < 0 or directionPositive == "bkwd" and direction < 0:
+            return "[FWD]"
+        elif directionPositive == "up" and direction > 0:
+            return "[UP]"
+        elif directionPositive == "up" and direction < 0:
+            return "[DOWN]"
+        elif directionPositive == "down" and direction > 0:
+            return "[DOWN]"
+        elif directionPositive == "down" and direction < 0:
+            return "[UP]"
+        elif directionPositive == "north" and direction > 0:
+            return "[NORTH]"
+        elif directionPositive == "north" and direction < 0:
+            return "[SOUTH]"
+        elif directionPositive == "south" and direction > 0:
+            return "[SOUTH]"
+        elif directionPositive == "south" and direction < 0:
+            return "[NORTH]"
+        elif directionPositive == "east" and direction > 0:
+            return "[EAST]"
+        elif directionPositive == "east" and direction < 0:
+            return "[WEST]"
+        elif directionPositive == "west" and direction > 0:
+            return "[WEST]"
+        elif directionPositive == "west" and direction < 0:
+            return "[EAST]"
+        else:
+            return ""
+
+    #Start of the program
+        #Declaring variables that will be defined by the user
+    solving = str("answer")
+    d = 0
+    v1 = 0
+    v2 = 0
+    a = 0
+    t = 0
+    answer = 0
+
+    #insruction for the user as to how they should input their variables
+    print("Type 'solve' for the variable you want to solve for")
+    print("Leave the unused variable blank")
+    print("Fill all other variables with the SI version of the values in the question")
+    print("Possible direction are: forward, fwd, backward, bkwd, north, east, south, west, up, down")
+
+    #All the variable inputs that the user needs to make for the program to run
+        #Input from the user to determine the vector component of the answer
+    directionPositive = str(input("Which direction is positive? "))
+
+        #The five possible variables that are used in the "Big 5" kinematic equations. One of the five needs to
+        #be left blank because only four are used in any given equation and one needs the key word solve for the
+        #program to know which variable it is solving for
+    displacement = input("What is the displacement: ")
+    velocityInitial = input("What is the initial velocity: ")
+    velocityFinal = input("What is the final velocity: ")
+    acceleration = input("What is the acceleration: ")
+    time = input("What is the time: ")
+    print()
+    #Uses the solve string to find which of the potential variables is being solved for. Another variable is set
+    #to keep the variable that needs to be solved stored and sets the original variable back to a number so that
+    #a float can be take from that variable for calculation
+    if displacement == "solve":
+        displacement = 0
+        solving = "d"    
+    elif velocityInitial == "solve":
+        velocityInitial = 0
+        solving = "v1"    
+    elif velocityFinal == "solve":
+        velocityFinal = 0
+        solving = "v2"    
+    elif acceleration == "solve":
+        acceleration = 0
+        solving = "a"
+    elif time == "solve":
+        time = 0
+        solving = "t"
+
+    ##print("The displacement is:", displacement)
+    ##print("The velocityInitial is:", velocityInitial)
+    ##print("The velocityFinal is:", velocityFinal)
+    ##print("The acceleration is:", acceleration)
+    ##print("The time is:", time)
+
+    #Determines which equation to use based on the the variable that is not assigned a value when all variables are declared
+    #the actual answer is then calculated and the appropriate vector is then assigned based on is the answer is positive or
+    #negative. If the answer is negative it is then changed to positive because vectored number should be expressed as postiive
+    #numbers only. Since time is not a vector it does not get a vector sign but time cannot be negative so it is also set to be positive.
+        
+        #Solving without the final velocity varaible
+    if velocityFinal == "":
+        answer = equation1(float(displacement), float(velocityInitial), float(acceleration), float(time))
+        
+        try:
+            vector = vectorDirection(answer)
+        except (TypeError):
+            pass
+
+        if answer < 0:
+            answer *= -1
+
+        if solving == "d":
+            print("The displacement is %0.2f" %(answer), "m", vector)
+        elif solving == "v1":
+            print("The initial velocity is %0.2f" %(answer), "m/s", vector)
+        elif solving == "a":
+            print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+        elif solving == "t" and answer != 0:
+            print("The time taken is %0.2f" %(answer), "s")
+
+        #Solving without the initial velocity variable        
+    elif velocityInitial == "":
+        answer = equation2(float(displacement), float(velocityFinal), float(acceleration), float(time))
+        vector = vectorDirection(answer)
+
+        if answer < 0:
+            answer *= -1
+            
+        if solving == "d":
+            print("The dispalcement is %0.2f" %(answer), "m", vector)
+        elif solving == "v2":
+            print("The final velocity is %0.2f" %(answer),"m/s", vector)
+            print(v2)
+        elif solving == "a":
+            print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+        elif solving == "t":
+            print("The time taken is %0.2f" %(answer), "s")
+
+        #Solving without the displacement variable
+    elif displacement == "":
+        answer = equation3(float(velocityInitial), float(velocityFinal), float(acceleration), float(time))
+        vector = vectorDirection(answer)
+        
+        if answer < 0:
+            answer *= -1
+            
+        if solving == "v1":
+            print("The initial velocity is %0.2f" %(answer), "m/s", vector)
+
+        elif solving == "v2":
+            print("The final velocity is %0.2f" %(answer), "m/s", vector)
+        elif solving == "a":
+            print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+        elif solving == "t":
+            print("The time taken is %0.2f" %(answer), "s")
+
+        #Solving without the acceleration variable
+    elif acceleration == "":
+        answer = equation4(float(displacement), float(velocityInitial), float(velocityFinal), float(time))
+        vector = vectorDirection(answer)
+
+        if answer < 0:
+            answer *= -1
+            
+        if solving == "d":
+            print("The displacement is %0.2f" %(answer), "m", vector)
+        elif solving == "v1":
+            print("The initial velocity is %0.2f" %(answer),"m/s", vector)
+        elif solving == "v2":
+            print("The final velocity %0.2f" %(answer), "m/s", vector)
+        elif solving == "t":
+            print("The time taken is %0.2f" %(answer), "s")
+
+        #Solving wihtout the time variable
+    elif time == "":
+        answer = equation5(float(displacement), float(velocityInitial), float(velocityFinal), float(acceleration))
+        vector = vectorDirection(answer)
+
+        if answer < 0:
+            answer *= -1
+            
+        if solving == "d":
+            print("The displacement is %0.2f" %(answer), "m", vector)
+        elif solving == "v1":
+            print("The initial velocity is %0.2f" %(answer), "m/s", vector)
+        elif solving == "v2":
+            print("The final velocity is %0.2f" %(answer), "m/s", vector)
+        elif solving == "a":
+            print("The acceleration is %0.2f" %(answer), "m/s^2", vector)
+
+    print()
+
+
+def projectilemotion():
+    def VelocityDistanceHeightSolveAngle(velocity, distance, height):
+        velocity = int(input())
+        distance = int(input())
+        height = int(input())
+
+        print("This is beyond the scope of my knowledge so we are guessing and checking it")
+
+        angle = 1
+        time = 0
+        distanc = -height
+
+        while True:
+            timeprevious = time
+            velocityY = math.sin(math.radians(angle))*velocity
+            velocityX = math.cos(math.radians(angle))*velocity
+            time = distance/velocityX
+            timecheck =  ((-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc)))))/(2*(-9.8))
+            angle = angle+0.01
+            if time>timecheck:
+                time = (time+timecheck)/2
+                break
+        if angle>90 or angle == 1:
+            print("Unsolvable")
+        else:
+            print("angle is", angle)    
+
+    def VelocityDistanceHeightSolveTime(velocity, distance, height):
+        velocity = int(input())
+        distance = int(input())
+        height = int(input())
+
+        print("This is beyond the scope of my knowledge so we are guessing and checking it")
+
+        angle = 1
+        time = 0
+        distanc = -height
+
+        while True:
+            timeprevious = time
+            velocityY = math.sin(math.radians(angle))*velocity
+            velocityX = math.cos(math.radians(angle))*velocity
+            time = distance/velocityX
+            timecheck =  ((-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc)))))/(2*(-9.8))
+            angle = angle+0.01
+            if time>timecheck:
+                time = (time+timecheck)/2
+                break
+
+        print("The time is", time)    
+
+    def TimeDistanceHeightSolveAngle(time, distance, height):
+        print("First we find velocity on X axis using distance over time")
+        velocityX = distance/time
+        print("Now we find y axis velocity using the big 5 equations")
+        distanc = -height
+        velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+        print("Finally, we use a tan funciton to find the angle")
+        angle = math.degrees(math.atan(velocityY/velocityX))
+        print("The angle is", angle)
+
+    def TimeDistanceHeightSolveVelocity(time, distance, height):
+        print("First we find velocity on X axis using distance over time")
+        velocityX = distance/time
+        print("Now we find y axis velocity using the big 5 equations")
+        distanc = -height
+        velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+        print("Finally, we use the pythagerrom theorm to find the total velocity")
+        velocity = math.sqrt(velocityX**2 + velocityY**2)
+        print("The velocity is", velocity)
+
+    def TimeAngleHeightSolveVelocity(time, angle, height):
+        print("First we find velocity on Y axis")
+        print("We have time, height, and gravity so far, so we use distance - 1/2*a*time^2/time")
+        distanc = -height
+        velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+        print("Now that we have velocity on the vertical and angle, we find total velocity")
+        velocity = velocityY*(1/(math.sin(math.radians(angle))))
+        print("The velocity is", velocity)
+
+    def TimeAngleHeightSolveDistance(time, angle, height):
+        print("First we find velocity on Y axis")
+        print("We have time, height, and gravity so far, so we use distance - 1/2*a*time^2/time")
+        distanc = -height
+        velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+        print("Now that we have velocity on the vertical and angle, we find total velocity")
+        velocity = velocityY*(1/(math.sin(math.radians(angle))))
+        print("The velocity is", velocity)
+        print("Now we use the pythagerom theorm to find velocity on x axis")
+        velocityX = math.sqrt((velocity**2)-(velocityY**2))
+        print("Velocity X is", velocityX)
+        print("Time * VelocityX equals distance")
+        print("The distance is", velocityX*time)
+        
+
+    def TimeAngleDistanceSolveVelocity(time, angle, distance):
+        print("First, we find velocity on the x axis by dividing distance with time")
+        velocityX = distance/time
+        print("Now we use secant of the angle to find the velocity")
+        velocity = velocityX * (1/(math.cos(math.radians(angle))))
+        print("The velocity is", velocity)
+
+    def TimeAngleDistanceSolveHeight(time, angle, distance):
+        print("First, we find velocity on the x axis by dividing distance with time")
+        velocityX = distance/time
+        print("Now we use secant of the angle to find the velocity")
+        velocity = velocityX * (1/(math.cos(math.radians(angle))))
+        print("The velocity is", velocity)
+        print("Now we find the up velocity using the pythagerom thoerom")
+        velocityY = sqrt((velocity**2)-(velocityX**2))
+        print("Velocity on the y axis is", velocityY)
+        print("Now we use the big 5 equation to find the height, which is height = velocity*time+1/2acceleration*time^2")
+        height = (velocityY*time)+(-9.8)*0.5*(time**2)
+        print("Remember to reverse the sign of height")
+        print("The height is", -height)
+
+
+    def TimeVelocityAngleSolveDistance(time, velocity, angle):
+        print("First we find the horizontal velocity!")
+        velocityX = math.cos(math.radians(angle))*velocity
+        print("Cosine", angle, "then multiply with", velocity, "to get", velocityX)
+        print("Since d = v*t, we multiply the velocity on the X axis with time to find distance")
+        distance = velocityX*time
+        print(time, "x", velocityX, "=", distance)
+        print("The distance is", distance, "!")
+
+    def TimeVelocityAngleSolveHeight(time, velocity, angle):
+        print("First we find vertical velocity!")
+        velocityY = math.sin(math.radians(angle))*velocity
+        print("sin", angle, "then multiply with", velocity, "to get", velocityY)
+        print("Thankfully daddy owen derived the equations for us.")
+        print("Substitute the variables into v*t + (1/2)*a*t^2")
+        height = (velocityY*time)+(-9.8)*0.5*(time**2)
+        print("The displacement is", height, "However, we are looing for height! It is the opposite")
+        print("The height is", -height)
+
+    def TimeVelocityDistanceSolveAngle(time, velocity, distance):
+        velocityX = distance/time
+        angle = math.degrees(math.acos(velocityX/velocity))
+        print("Finding the velocity on the horizontal axis is of upmost importance")
+        print(distance, "divided by", time, "equals", velocityX)
+        print("Then we can find the angle using trigonomerty")
+        print("Divide horizontal velocity by velocity, then use inverse cos to find the angle!")
+        print("The angle is", angle)
+
+    def TimeVelocityDistanceSolveHeight(time, velocity, distance):
+        velocityX = distance/time
+        angle = math.degrees(math.acos(velocityX/velocity))
+        print("Finding the velocity on the horizontal axis is of upmost importance")
+        print(distance, "divided by", time, "equals", velocityX)
+        print("Then we can find the angle using trigonomerty")
+        print("Divide horizontal velocity by velocity, then use inverse cos to find the angle!")
+        print("The angle is", angle)
+        print("Now we find the velocity on the y axis")
+        velocityY = math.sin(math.radians(angle))*velocity
+        print("sin", angle, "then multiply with", velocity, "to get", velocityY)
+        print("Thankfully daddy owen derived the equations for us.")
+        print("Substitute the variables into v*t + (1/2)*a*t^2")
+        height = (velocityY*time)+(-9.8)*0.5*(time**2)
+        print("The displacement is", height, "However, we are looing for height! It is the opposite")
+        print("The height is", -height)
+
+    def TimeVelocityHeightSolveDistance(time, velocity, height):
+        print("We first find the velocity on vertical")
+        print("Thank daddy owen for deriving the equation for us")
+        print("We currently have *gasp* time, height, and gravity")
+        print("Remember, we must make height negative because we are finding the end displacement")
+        print("(v = d-1/2a*t^2)/t")
+        distanc = -height
+        velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+        print("Vertical velocity is", velocityY)
+        angle = math.degrees(math.asin(velocityY/velocity))
+        print("sin(verticalvelocity/velocity) gives us", angle)
+        print("To find distance, we find the vertical velocity")
+        velocityX = math.cos(math.radians(angle))*velocity
+        print("cos(angle)*velocity equals", velocityX)
+        print("velocity*time gives us distance")
+        distance = velocityX*time
+        print("The distance is", distance)
+
+    def TimeVelocityHeightSolveAngle(time, velocity, height):
+        print("We first find the velocity on vertical")
+        print("Thank daddy owen for deriving the equation for us")
+        print("We currently have *gasp* time, height, and gravity")
+        print("Remeber, we must make height negative because we are finding the end displacement")
+        print("(v = d-1/2a*t^2)/t")
+        distanc = -height
+        velocityY = (distanc-(1/2)*-9.8*(time**2))/time
+        print("Vertical velocity is", velocityY)
+        angle = math.degrees(math.asin(velocityY/velocity))
+        print("sin(verticalvelocity/velocity) gives us", angle)
+        print("The angle is", angle)
+
+    def VelocityDistanceAngleSolveTime(velocity, distance, angle):
+        print("We first find the velocity of the x component")
+        velocityX = math.cos(math.radians(angle))*velocity
+        print("cosine velocity to get", velocityX)
+        print("Now we divide distance by velocity on the X axis to get time")
+        time = velocity/velocityX
+        print(velocity, "divided by", velocityX, "is", time)
+        print("The time is", time)
+
+    def VelocityDistanceAngleSolveHeight(velocity, distance, angle):
+        print("We first find the velocity of the x component")
+        velocityX = math.cos(math.radians(angle))*velocity
+        print("cosine velocity to get", velocityX)
+        print("Now we divide distance by velocity on the X axis to get time")
+        time = velocity/velocityX
+        print(velocity, "divided by", velocityX, "is", time)
+        print("Now we find velocity on the Y axis")
+        velocityY = math.sin(math.radians(angle))*velocity
+        print("Thankfull daddy own derived the equations, so we sdef VelocityDistanceHeightSolveAngle(velocity, distance, height")
+        velocity = int(input())
+        distance = int(input())
+        height = int(input())
+
+        print("This is beyond the scope of my knowledge so we are guessing and checking it")
+
+        angle = 1
+        time = 0
+        distanc = -height
+
+        while True:
+            timeprevious = time
+            velocityY = math.sin(math.radians(angle))*velocity
+            velocityX = math.cos(math.radians(angle))*velocity
+            time = distance/velocityX
+            timecheck =  ((-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc)))))/(2*(-9.8))
+            angle = angle+0.01
+            if time>timecheck:
+                time = (time+timecheck)/2
+                break
+        if angle>90 or angle == 1:
+            print("Unsolvable")
+        else:
+            print("angle is", angle)    
+
+    def VelocityDistanceHeightSolveTime(velocity, distance, height):
+        velocity = int(input())
+        distance = int(input())
+        height = int(input())
+
+        print("This is beyond the scope of my knowledge so we are guessing and checking it")
+
+        angle = 1
+        time = 0
+        distanc = -height
+
+        while True:
+            timeprevious = time
+            velocityY = math.sin(math.radians(angle))*velocity
+            velocityX = math.cos(math.radians(angle))*velocity
+            time = distance/velocityX
+            timecheck =  ((-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc)))))/(2*(-9.8))
+            angle = angle+0.01
+            if time>timecheck:
+                time = (time+timecheck)/2
+                break
+
+        print("The time is", time)    
+
+    def TimeDistanceHeightSolveAngle(time, distance, height):
+        print("First we find velocity on X axis using distance over time")
+        velocityX = distance/time
+        print("Now we find y axis velocity using the big 5 equatiubtistute into a big 5")
+        print("We use v*t + 1/2a*t^2")
+        height = (velocityY*time)+((1/2)*(-9.8)*(time**2))
+        print("The displacement is", height, "but since it is negative the height is", -height)
+
+    def VelocityAngleHeightSolveTime(velocity, angle, height):
+        print("Remember to flip height since the projectile is going down")
+        distanc = -height
+        print("We first find the Y component velocity")
+        velocityY = math.sin(math.radians(angle))*velocity
+        print("sin velocity to get", velocityY)
+        print("Now we substitute the variables into the equation")
+        print("time = (-v+/-squareroot(v^2-2a(-d)))/21")
+        print("Since there are two values for time, we use the larger one")
+        print("This is because the smaller velocity assumes the projectile is traveling up")
+        time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+
+    def VelocityAngleHeightSolveDistance(velocity, angle, height):
+        print("Remember to flip height since the projectile is going down")
+        distanc = -height
+        print("We first find the Y component velocity")
+        velocityY = math.sin(math.radians(angle))*velocity
+        print("sin velocity to get", velocityY)
+        print("Now we substitute the variables into the equation")
+        print("time = (-v+/-squareroot(v^2-2a(-d)))/21")
+        print("Since there are two values for time, we use the larger one")
+        print("This is because the smaller velocity assumes the projectile is traveling up")
+
+        time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+
+        print("The time is", time)
+
+        print("Now we find velocity on the horizontal axis")
+        velocityX = math.cos(math.radians(angle))*velocity
+        print("cos the velocity to get", velocityX)
+        print("Now we multiply velocity on the horizonal with time to get distance")
+        distance = velocityX*time
+        print("The total distance is", distance)
+
+    def AngleDistanceHeightSolveTime(angle, distance, height):
+        velocity = 0.001
+        distanc = -height
+
+        while True:
+            #We can technically combine all of this into one line but it would be too tedious
+            velocityY = math.sin(math.radians(angle))*velocity
+            time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+            velocityX = math.cos(math.radians(angle))*velocity
+            distanceTry = velocityX*time
+            if distanceTry<distance:
+                velocity = velocity*2
+            elif distanceTry>distance:
+                break
+
+
+        change = velocity/2
+        foward = False
+
+        while True:
+            if foward == True:
+                velocity += change
+            else:
+                velocity -= change
+                
+            velocityY = math.sin(math.radians(angle))*velocity
+            time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+            velocityX = math.cos(math.radians(angle))*velocity
+            distanceTry = velocityX*time
+            if distanceTry>distance:
+                foward = False
+            elif distanceTry<distance:
+                foward = True
+            else:
+                break
+
+            if change<0.001:
+                break
+            
+            change = change/2
+
+        print("Unfortunately, solving this is beyond the scope of grade 11. This program guessed and checked")
+        print("The time is", time)
+
+    def AngleDistanceHeightSolveVelocity(angle, distance, height):  
+        velocity = 0.001
+        distanc = -height
+
+        while True:
+            #We can technically combine all of this into one line but it would be too tedious
+            velocityY = math.sin(math.radians(angle))*velocity
+            time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+            velocityX = math.cos(math.radians(angle))*velocity
+            distanceTry = velocityX*time
+            if distanceTry<distance:
+                velocity = velocity*2
+            elif distanceTry>distance:
+                break
+
+
+        change = velocity/2
+        foward = False
+
+        while True:
+            if foward == True:
+                velocity += change
+            else:
+                velocity -= change
+                
+            velocityY = math.sin(math.radians(angle))*velocity
+            time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+            velocityX = math.cos(math.radians(angle))*velocity
+            distanceTry = velocityX*time
+            if distanceTry>distance:
+                foward = False
+            elif distanceTry<distance:
+                foward = True
+            else:
+                break
+
+            if change<0.001:
+                break
+            
+            change = change/2
+
+        print("Unfortunately, solving this is beyond the scope of grade 11. This program guessed and checked")
+        print("The velocity is", velocity)
+
+    #0 is given, 1 is required, 2 is missing
+
+    timeAsk = 0
+    velocityAsk = 0
+    angleAsk = 0
+    distanceAsk = 0
+    heightAsk = 0
+
+    while True:
+        required = input("Enter the variable you want to sovle for: time, velocity, angle, distance, or height")
+        if required == "time":
+            timeAsk = 1
+            break
+        elif required == "velocity":
+            velocityAsk = 1
+            break
+        elif required == "angle":
+            angleAsk = 1
+            break
+        elif required == "distance":
+            distanceAsk = 1
+            break
+        elif required == "height":
+            heightAsk = 1
+            break
+        else:
+            print("Not valid")
+
+
+    while True:
+        missing = input("Enter the variable that is missing")
+        
+        if required == missing:
+            print("Not valid")
+            continue
+
+        if missing == "time":
+            timeAsk = 2
+            break
+
+        elif missing == "velocity":
+            velocityAsk = 2
+            break
+
+        elif missing == "angle":
+            angleAsk = 2
+            break
+
+        elif missing == "distance":
+            distanceAsk = 2
+            break
+
+        elif missing == "height":
+            heightAsk = 2
+            break
+
+        else:
+            print("Not valid")
+
+
+    if timeAsk == 0:
+        time = float(input("input the time"))
+
+    if velocityAsk == 0:
+        velocity = float(input("input the velocity"))
+
+    if angleAsk == 0:
+        while True:
+            angle = float(input("Input the angle above the horizone, up to 90 degrees"))
+            if(angle>= 0 and angle<= 90):
+                break
+            else:
+                print("Not valid!")
+                
+    if distanceAsk == 0:
+        distance = float(input("Input the distance"))
+
+    if heightAsk == 0:
+        height = float(input("Input the height"))
+
+
+    if timeAsk == 0 and velocityAsk == 0 and angleAsk == 0 and distanceAsk == 1:
+        TimeVelocityAngleSolveDistance(time, velocity, angle)
+
+    if timeAsk == 0 and velocityAsk == 0 and angleAsk == 0 and heightAsk == 1:
+        TimeVelocityAngleSolveHeight(time, velocity, angle)
+
+    if timeAsk == 0 and velocityAsk == 0 and distanceAsk == 0 and angleAsk == 1:
+        TimeVelocityDistanceSolveAngle(time, velocity, distance)
+
+    if timeAsk == 0 and velocityAsk == 0 and distanceAsk == 0 and heightAsk == 1:
+        TimeVelocityDistanceSolveHeight(time, velocity, distance)
+
+    if timeAsk == 0 and velocityAsk == 0 and heightAsk == 0 and distanceAsk == 1:
+        TimeVelocityHeightSolveDistance(time, velocity, height)
+
+    if timeAsk == 0 and velocityAsk == 0 and heightAsk == 0 and angleAsk == 1:
+        TimeVelocityHeightSolveAngle(time, velocity, height)
+
+    if velocityAsk == 0 and distanceAsk == 0 and angleAsk == 0 and timeAsk == 1:
+        VelocityDistanceAngleSolveTime(velocity, distance, angle)
+
+    if velocityAsk == 0 and distanceAsk == 0 and angleAsk == 0 and heightAsk == 1:
+        VelocityDistanceAngleSolveHeight(velocity, distance, angle)
+
+    if velocityAsk == 0 and angleAsk == 0 and heightAsk == 0 and timeAsk == 1:
+        VelocityAngleHeightSolveTime(velocity, angle, height)
+
+    if velocityAsk == 0 and angleAsk == 0 and heightAsk == 0 and distanceAsk == 1:
+        VelocityAngleHeightSolveDistance(velocity, angle, height)
+
+    if angleAsk == 0 and distanceAsk == 0 and heightAsk == 0 and timeAsk == 1:
+        AngleDistanceHeightSolveTime(angle, distance, height)
+
+    if angleAsk == 0 and distanceAsk == 0 and heightAsk == 0 and velocityAsk == 1:
+        AngleDistanceHeightSolveVelocity(angle, distance, height)
+
+    if velocityAsk == 0 and distanceAsk == 0 and heightAsk == 0 and angleAsk == 1:
+        VelocityDistanceHeightSolveAngle(velocity, distance, height)
+
+    if velocityAsk == 0 and distanceAsk == 0 and heightAsk == 0 and timeAsk == 1:
+        VelocityDistanceHeightSolveTime(velocity, distance, height)
+
+    if timeAsk == 0 and distanceAsk == 0 and heightAsk == 0 and velocityAsk == 1:
+        TimeDistanceHeightSolveVelocity(time, distance, height)
+
+    if timeAsk == 0 and distanceAsk == 0 and heightAsk == 0 and angleAsk == 1:
+        TimeDistanceHeightSolveAngle(time, distance, height)
+
+    if timeAsk == 0 and angleAsk == 0 and heightAsk == 0 and velocityAsk == 1:
+        TimeAngleHeightSolveVelocity(time, angle, height)
+
+    if timeAsk == 0 and angleAsk == 0 and heightAsk == 0 and distanceAsk == 1:
+        TimeAngleHeightSolveDistance(time, angle, height)
+
+    if timeAsk == 0 and angleAsk == 0 and distanceAsk == 0 and velocityAsk == 1:
+        TimeAngleDistanceSolveVelocity(time, angle, distance)
+
+    if timeAsk == 0 and angleAsk == 0 and distanceAsk == 0 and heightAsk == 1:
+        TimeAngleDistanceSolveHeight(time, angle, distance)
+
+while True:
+    try:
+        ask = int(input("Enter 1 for the kinematic equations, enter 2 for projectile motion"))
+        if ask == 1:
+            bigfive()
+        elif ask == 2:
+            projectilemotion()
+        else:
+            print("Not valid")
+    except:
+        print("Not valid")
+    
+
+
+
+
