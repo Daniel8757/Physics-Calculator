@@ -1,0 +1,30 @@
+import math
+
+#With time and velocity and distance
+time = float(input("Enter the time"))
+velocity = float(input("input the velocity"))
+distance = float(input("tell me the distance"))
+
+
+ask = int(input("Find angleor height? 1 for angle, 2 for height"))
+
+if ask == 1:
+    print("Finding the velocity on the horizontal axis is of upmost importance")
+    print(distance, "divided by", time, "equals", velocityX)
+    print("Then we can find the angle using trigonomerty")
+    print("Divide horizontal velocity by velocity, then use inverse cos to find the angle!")
+    print("The angle is", angle)
+elif ask == 2:
+    print("Finding the velocity on the horizontal axis is of upmost importance")
+    print(distance, "divided by", time, "equals", velocityX)
+    print("Then we can find the angle using trigonomerty")
+    print("Divide horizontal velocity by velocity, then use inverse cos to find the angle!")
+    print("The angle is", angle)
+    print("Now we find the velocity on the y axis")
+    velocityY = math.sin(math.radians(angle))*velocity
+    print("sin", angle, "then multiply with", velocity, "to get", velocityY)
+    print("Thankfully daddy owen derived the equations for us.")
+    print("Substitute the variables into v*t + (1/2)*a*t^2")
+    height = (velocityY*time)+(-9.8)*0.5*(time**2)
+    print("The displacement is", height, "However, we are looing for height! It is the opposite")
+    print("The height is", -height)
