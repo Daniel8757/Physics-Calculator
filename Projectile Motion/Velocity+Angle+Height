@@ -1,0 +1,51 @@
+import math
+
+#With velocity, angle, and height
+
+velocity = float(input("Input the velocity"))
+height = float(input("Input the height"))
+
+while True:
+    angle = float(input("Input the angle above the horizone, up to 90 degrees"))
+    if(angle>= 0 and angle<= 90):
+        break
+    else:
+        print("Not valid!")
+
+ask = int(input("1 for time, 2 for distance"))
+
+if ask == 1:
+    print("Remember to flip height since the projectile is going down")
+    distanc = -height
+    print("We first find the Y component velocity")
+    velocityY = math.sin(math.radians(angle))*velocity
+    print("sin velocity to get", velocityY)
+    print("Now we substitute the variables into the equation")
+    print("time = (-v+/-squareroot(v^2-2a(-d)))/21")
+    print("Since there are two values for time, we use the larger one")
+    print("This is because the smaller velocity assumes the projectile is traveling up")
+
+    time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+
+    print("The time is", time)
+elif ask == 2:
+    print("Remember to flip height since the projectile is going down")
+    distanc = -height
+    print("We first find the Y component velocity")
+    velocityY = math.sin(math.radians(angle))*velocity
+    print("sin velocity to get", velocityY)
+    print("Now we substitute the variables into the equation")
+    print("time = (-v+/-squareroot(v^2-2a(-d)))/21")
+    print("Since there are two values for time, we use the larger one")
+    print("This is because the smaller velocity assumes the projectile is traveling up")
+
+    time = (-velocityY-math.sqrt((velocityY**2)-(2*(-9.8)*(-distanc))))/(2*(-9.8))
+
+    print("The time is", time)
+
+    print("Now we find velocity on the horizontal axis")
+    velocityX = math.cos(math.radians(angle))*velocity
+    print("cos the velocity to get", velocityX)
+    print("Now we multiply velocity on the horizonal with time to get distance")
+    distance = velocityX*time
+    print("The total distance is", distance)
