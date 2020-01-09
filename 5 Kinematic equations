@@ -1,4 +1,4 @@
-#Kinematic equation that does not use the final velocity variable
+#Kinematic equation that does not use the final velocity variable, computed easily
 def equation1(d, v1, a, t):
     t1 = 0
     t2 = 0   
